@@ -6,14 +6,17 @@ const todoResolver = {
     getAllTodos: async () => await Todo.find(),
   },
   Mutation: {
-    addTodo: async (_, { task }) => {
-      const newTodo = new Todo( {task, completed:false});
+    addTodo: async (_, { title }) => {
+      const newTodo = new Todo({
+        title,
+        isCompleted: false,
+      });
       return await newTodo.save();
     },
     toggleTodoCompleted: async (_, { id }) => {
       const todo = await Todo.findById(id);
       if (todo) {
-        todo.completed = !todo.completed;
+        todo.isCompleted = !todo.isCompleted;
         await todo.save();
       }
       return todo;

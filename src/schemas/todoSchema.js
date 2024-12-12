@@ -3,8 +3,8 @@ const { gql } = require('apollo-server-express');
 const todoSchema = gql`
   type Todo {
     id: ID!
-    task: String!
-    completed: Boolean!
+    title: String!
+    isCompleted: Boolean!
   }
 
   type Query {
@@ -13,7 +13,7 @@ const todoSchema = gql`
   }
 
   type Mutation {
-    addTodo(task: String!): Todo
+    addTodo(title: String!): Todo
     toggleTodoCompleted(id: ID!): Todo
   }
 `;
